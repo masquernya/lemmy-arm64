@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Docker Setup QEMU
+      # You may pin to the exact commit or the version.
+      # uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7
+      uses: docker/setup-qemu-action@v2.2.0
+      with:
+        # Platforms to install (e.g. arm64,riscv64,arm)
+        platforms: arm64
+    - uses: actions/checkout@v3
+    - name: Build
+      run: apt-get install -y qemu-user-static && chmod +x build_latest.sh && ./build_latest.sh
