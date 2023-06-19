@@ -12,7 +12,7 @@ git checkout "$LEMMY_VERSION";
 # bug fix: https://github.com/nodejs/docker-node/issues/1912
 sed -i 's/node:alpine/node:20-alpine3.16/g' Dockerfile;
 
-docker build . --platform linux/arm64 -t arm64v8/ubuntu --tag="masquernya/lemmy-ui:$LEMMY_VERSION-linux-arm64" || exit 1;
+docker build . --platform linux/arm64 --tag="masquernya/lemmy-ui:$LEMMY_VERSION-linux-arm64" || exit 1;
 
 echo "Release UI";
 docker push "masquernya/lemmy-ui:$LEMMY_VERSION-linux-arm64" || exit 1;
