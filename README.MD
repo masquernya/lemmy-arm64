@@ -6,4 +6,12 @@ If lemmy starts releasing official ARM64 images again, you should use those inst
 
 # Build Time
 
-3240s on AMD64 with QEMU on my AMD laptop.
+Duration in seconds for step 6 (build).
+
+
+**x86-64 QEMU (BuildX)**
+- 3240s on my x86-64 laptop with an AMD CPU
+
+**ARM64 (native)**
+- 451s on Hetzner VPS cax41 (16 Core, 32 GB RAM, Ampere Altra Q80-30)
+    - You can pay by the hour, so this only works out to about $0.04 per build.
