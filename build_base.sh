@@ -12,7 +12,9 @@ git checkout "$TRANSLATION_COMMIT" || exit 1;
 cd ../../../;
 git checkout "$LEMMY_VERSION";
 
-docker build . --platform linux/arm64 --file ./docker/prod/Dockerfile.arm  --tag="masquernya/lemmy:$LEMMY_VERSION-linux-arm64" || exit 1;
+rm -f ./docker/Dockerfile && cp ../Dockerfile ./docker/ || exit 1;
+
+docker build . --platform linux/arm64 --file ./docker/Dockerfile --tag="masquernya/lemmy:$LEMMY_VERSION-linux-arm64" || exit 1;
 
 echo "Successfully built lemmy backend. Release.";
 
