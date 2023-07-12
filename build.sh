@@ -13,7 +13,7 @@ cd ../../../;
 git checkout "$LEMMY_VERSION";
 
 
-docker build . --build-arg RUST_RELEASE_MODE=release --platform linux/arm64 --file ./docker/Dockerfile --tag="masquernya/lemmy:$LEMMY_VERSION-linux-arm64" || exit 1;
+docker build . --build-arg RUST_RELEASE_MODE=release --build-arg CARGO_BUILD_TARGET=aarch64-unknown-linux-gnu --platform linux/arm64 --file ./docker/Dockerfile --tag="masquernya/lemmy:$LEMMY_VERSION-linux-arm64" || exit 1;
 
 echo "Successfully built lemmy backend. Release.";
 
