@@ -10,6 +10,11 @@ ARG CARGO_BUILD_FEATURES=default
 # This can be set to release using --build-arg
 ARG RUST_RELEASE_MODE="debug"
 
+# Install compilation dependencies
+RUN apt-get update \
+ && apt-get -y install --no-install-recommends libssl-dev pkg-config libpq-dev git \
+ && rm -rf /var/lib/apt/lists/*
+
 COPY . .
 
 # Build the project
@@ -35,7 +40,6 @@ FROM alpine:3 as lemmy
 
 # Install libpq for postgres
 RUN apk add --no-cache libpq
-RUN apk add pkgconfig
 
 # Copy resources
 COPY --from=builder /app/lemmy_server /app/lemmy
