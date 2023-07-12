@@ -18,4 +18,4 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y docker-ce docker-ce-cli contai
 docker login -u masquernya; # should prompt for password.
 git clone https://github.com/masquernya/lemmy-arm64;
 cd lemmy-arm64;
-sudo ./build_latest.sh;
+sudo ./build.sh;
