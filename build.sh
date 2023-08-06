@@ -1,5 +1,5 @@
-export LEMMY_VERSION="0.18.2";
-export TRANSLATION_COMMIT="b3079135e1c6f488a52f11df84baa45e3d0e4f8e";
+export LEMMY_VERSION="0.18.3";
+export TRANSLATION_COMMIT="22637606f4a4455458e64cefe9f5ec33dccb6c52";
 
 git clone https://github.com/LemmyNet/lemmy.git || exit 1;
 cd lemmy;
