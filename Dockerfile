@@ -35,13 +35,22 @@ RUN \
       && cp ./target/$CARGO_BUILD_TARGET/$RUST_RELEASE_MODE/lemmy_server /app/lemmy_server; \
     fi
 
-# The alpine runner
-FROM alpine:3 as lemmy
+
+# The Debian runner
+FROM debian:buster-slim as lemmy
 
 # Install libpq for postgres
-RUN apk add --no-cache libpq
+RUN apt-get update \
+ && apt-get -y install --no-install-recommends postgresql-client libc6 libssl1.1 ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN addgroup --gid 1000 lemmy
+RUN useradd --no-create-home --shell /bin/sh --uid 1000 --gid 1000 lemmy
 
 # Copy resources
-COPY --from=builder /app/lemmy_server /app/lemmy
+COPY --chown=lemmy:lemmy --from=builder /app/lemmy_server /app/lemmy
 
+RUN chown lemmy:lemmy /app/lemmy
+USER lemmy
+EXPOSE 8536
 CMD ["/app/lemmy"]
